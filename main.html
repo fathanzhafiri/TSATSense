@@ -4,780 +4,787 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telkomsat IoT Solutions | Connectivity Beyond Limits</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#e30613',     // merah corporate
+        surface: '#f5f6f8',     // background soft
+        card: '#ffffff',
+        borderc: '#e5e7eb',
+        textmain: '#1f2937',
+        textmuted: '#6b7280'
+      }
+    }
+  }
+}
+</script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero-gradient {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .satellite-pulse {
-            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes pulse-ring {
-            0% { transform: scale(0.8); opacity: 1; }
-            100% { transform: scale(2); opacity: 0; }
-        }
-        .orbit-animation {
-            animation: orbit 20s linear infinite;
-        }
-        @keyframes orbit {
-            from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
-            to { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
-        }
-        .industry-card:hover .industry-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-        .map-pin {
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="bg-surface text-textmain antialiased">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                        <i data-lucide="satellite" class="text-white w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <span class="text-2xl font-bold text-slate-900">Telkomsat</span>
-                        <span class="text-xs text-blue-600 font-semibold block -mt-1">IoT Solutions</span>
-                    </div>
+    <nav class="fixed w-full z-50 bg-card border-b border-borderc shadow-sm transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                    <i data-lucide="satellite" class="text-white w-6 h-6"></i>
                 </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#solutions" class="text-slate-600 hover:text-blue-600 font-medium transition">Solutions</a>
-                    <a href="#industries" class="text-slate-600 hover:text-blue-600 font-medium transition">Industries</a>
-                    <a href="#technology" class="text-slate-600 hover:text-blue-600 font-medium transition">Technology</a>
-                    <a href="#case-studies" class="text-slate-600 hover:text-blue-600 font-medium transition">Case Studies</a>
-                    <button onclick="openContactModal()" class="bg-blue-600 text-white px-6 py-2.5 rounded-full font-medium hover:bg-blue-700 transition shadow-lg hover:shadow-xl">
-                        Talk to Expert
-                    </button>
+                <div>
+                    <span class="text-3xl font-semibold text-textmain">
+                        TSATSense
+                    </span>
+                    <span class="text-xs text-textmuted block -mt-1">
+                        powered by <span class="font-semibold text-textmain">
+                            telkom<span class="text-primary">sat</span>
+                        </span>
+                    </span>
                 </div>
-
-                <button class="md:hidden" onclick="toggleMobileMenu()">
-                    <i data-lucide="menu" class="w-6 h-6 text-slate-700"></i>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#solutions" class="text-textmuted hover:text-primary font-medium transition">Solutions</a>
+                <a href="#industries" class="text-textmuted hover:text-primary font-medium transition">Industries</a>
+                <a href="#technology" class="text-textmuted hover:text-primary font-medium transition">Technology</a>
+                <a href="#case-studies" class="text-textmuted hover:text-primary font-medium transition">Case Studies</a>
+                <button onclick="openContactModal()" class="bg-primary text-white px-6 py-2.5 rounded-lg font-medium hover:bg-red-700 transition shadow-sm">
+                    Talk to Expert
                 </button>
             </div>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
-            <div class="px-4 py-4 space-y-3">
-                <a href="#solutions" class="block text-slate-600 font-medium">Solutions</a>
-                <a href="#industries" class="block text-slate-600 font-medium">Industries</a>
-                <a href="#technology" class="block text-slate-600 font-medium">Technology</a>
-                <button onclick="openContactModal()" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">Talk to Expert</button>
-            </div>
-        </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center hero-gradient overflow-hidden pt-20">
-        <!-- Animated Background Elements -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl satellite-pulse"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl satellite-pulse" style="animation-delay: 1s;"></div>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-20">
-                <div class="absolute top-1/4 left-1/4 orbit-animation">
-                    <i data-lucide="satellite" class="w-8 h-8 text-blue-400"></i>
+<section class="pt-32 pb-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left Content -->
+        <div class="space-y-8">
+
+            <div class="inline-flex items-center space-x-2 bg-white border border-borderc rounded-lg px-4 py-2">
+                <span class="w-2 h-2 bg-primary rounded-full"></span>
+                <span class="text-sm text-textmuted font-medium">
+                    Enterprise-Grade Satellite IoT
+                </span>
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-semibold text-textmain leading-tight">
+                Reliable Connectivity <br>
+                <span class="text-primary">Beyond Terrestrial Limits</span>
+            </h1>
+            
+            <p class="text-lg text-textmuted leading-relaxed max-w-xl">
+                Delivering secure and real-time satellite IoT connectivity across Indonesia’s archipelago. Built for mission-critical industries where reliability is non-negotiable.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="scrollToSection('industries')" 
+                    class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-red-700 transition shadow-sm">
+                    Explore Solutions
+                </button>
+
+                <button onclick="scrollToSection('coverage')" 
+                    class="bg-white border border-borderc text-textmain px-8 py-3 rounded-lg font-medium hover:bg-gray-50 transition">
+                    View Coverage Map
+                </button>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="grid grid-cols-3 gap-8 pt-8 border-t border-borderc">
+                <div>
+                    <div class="text-2xl font-semibold text-textmain">99.9%</div>
+                    <div class="text-sm text-textmuted">Network Uptime</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-semibold text-textmain">17K+</div>
+                    <div class="text-sm text-textmuted">Islands Covered</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-semibold text-textmain">24/7</div>
+                    <div class="text-sm text-textmuted">NOC Support</div>
                 </div>
             </div>
         </div>
 
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-8">
-                <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
-                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                    <span class="text-sm text-blue-100 font-medium">Enterprise-Grade Satellite IoT</span>
-                </div>
-                
-                <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight">
-                    Connectivity <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Beyond Limits</span>
-                </h1>
-                
-                <p class="text-xl text-slate-300 leading-relaxed max-w-xl">
-                    Reliable, real-time data transmission across Indonesia's 17,000+ islands and beyond. Where terrestrial networks fail, our satellite IoT infrastructure prevails.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <button onclick="scrollToSection('industries')" class="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg hover:shadow-blue-500/25 flex items-center justify-center space-x-2">
-                        <span>Explore Solutions</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </button>
-                    <button onclick="scrollToSection('coverage')" class="bg-white/10 backdrop-blur-sm text-white border border-white/30 px-8 py-4 rounded-full font-semibold hover:bg-white/20 transition flex items-center justify-center space-x-2">
-                        <i data-lucide="map" class="w-5 h-5"></i>
-                        <span>View Coverage Map</span>
-                    </button>
+        <!-- Right Card -->
+        <div class="hidden lg:block">
+            <div class="bg-card border border-borderc rounded-xl p-8 shadow-sm">
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-textmain mb-1">
+                        Live Network Overview
+                    </h3>
+                    <p class="text-sm text-textmuted">
+                        Real-time monitoring across strategic operational sites.
+                    </p>
                 </div>
 
-                <!-- Trust Indicators -->
-                <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
-                    <div>
-                        <div class="text-3xl font-bold text-white">99.9%</div>
-                        <div class="text-sm text-slate-400">Network Uptime</div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-surface rounded-lg p-4 border border-borderc">
+                        <div class="text-sm text-textmuted">Active Devices</div>
+                        <div class="text-2xl font-semibold text-textmain mt-1">12,847</div>
                     </div>
-                    <div>
-                        <div class="text-3xl font-bold text-white">17K+</div>
-                        <div class="text-sm text-slate-400">Islands Covered</div>
+                    <div class="bg-surface rounded-lg p-4 border border-borderc">
+                        <div class="text-sm text-textmuted">Data Processed Today</div>
+                        <div class="text-2xl font-semibold text-textmain mt-1">2.4 TB</div>
                     </div>
-                    <div>
-                        <div class="text-3xl font-bold text-white">24/7</div>
-                        <div class="text-sm text-slate-400">NOC Support</div>
+                    <div class="bg-surface rounded-lg p-4 border border-borderc">
+                        <div class="text-sm text-textmuted">Latency</div>
+                        <div class="text-2xl font-semibold text-textmain mt-1">&lt; 50ms</div>
                     </div>
-                </div>
-            </div>
-
-            <div class="relative hidden lg:block">
-                <div class="relative bg-slate-800/50 backdrop-blur-xl rounded-3xl p-8 border border-slate-700 shadow-2xl">
-                    <div class="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
-                        Live Network
-                    </div>
-                    <!-- Interactive Network Visualization -->
-                    <div class="aspect-square relative bg-slate-900 rounded-2xl overflow-hidden">
-                        <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 2px 2px, rgba(59, 130, 246, 0.5) 1px, transparent 0); background-size: 40px 40px;"></div>
-                        
-                        <!-- Indonesia Map Silhouette (Simplified) -->
-                        <svg class="absolute inset-0 w-full h-full text-slate-700 fill-current opacity-50" viewBox="0 0 400 400">
-                            <path d="M120,100 Q150,80 180,100 T240,120 T280,150 T300,200 T280,280 T200,320 T120,280 T80,200 T100,150 Z" />
-                        </svg>
-
-                        <!-- Connection Nodes -->
-                        <div class="absolute top-1/3 left-1/4 map-pin">
-                            <div class="w-4 h-4 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50 relative">
-                                <div class="absolute inset-0 bg-blue-500 rounded-full animate-ping"></div>
-                            </div>
-                            <div class="absolute top-6 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap">Jakarta Hub</div>
-                        </div>
-                        
-                        <div class="absolute top-1/2 left-1/2 map-pin" style="animation-delay: 0.5s;">
-                            <div class="w-3 h-3 bg-purple-500 rounded-full shadow-lg shadow-purple-500/50"></div>
-                            <div class="absolute top-5 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap">Kalimantan Site</div>
-                        </div>
-
-                        <div class="absolute bottom-1/3 right-1/4 map-pin" style="animation-delay: 1s;">
-                            <div class="w-3 h-3 bg-cyan-500 rounded-full shadow-lg shadow-cyan-500/50"></div>
-                            <div class="absolute top-5 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap">Papua Mine</div>
-                        </div>
-
-                        <!-- Connection Lines (SVG) -->
-                        <svg class="absolute inset-0 w-full h-full pointer-events-none">
-                            <line x1="100" y1="133" x2="200" y2="200" stroke="rgba(59, 130, 246, 0.3)" stroke-width="2" stroke-dasharray="5,5">
-                                <animate attributeName="stroke-dashoffset" from="0" to="10" dur="1s" repeatCount="indefinite" />
-                            </line>
-                            <line x1="200" y1="200" x2="300" y2="267" stroke="rgba(168, 85, 247, 0.3)" stroke-width="2" stroke-dasharray="5,5">
-                                <animate attributeName="stroke-dashoffset" from="0" to="10" dur="1s" repeatCount="indefinite" />
-                            </line>
-                        </svg>
-                    </div>
-                    
-                    <div class="mt-6 grid grid-cols-2 gap-4">
-                        <div class="bg-slate-800/50 rounded-lg p-3 border border-slate-700">
-                            <div class="text-xs text-slate-400">Active Devices</div>
-                            <div class="text-xl font-bold text-white">12,847</div>
-                        </div>
-                        <div class="bg-slate-800/50 rounded-lg p-3 border border-slate-700">
-                            <div class="text-xs text-slate-400">Data Today</div>
-                            <div class="text-xl font-bold text-white">2.4 TB</div>
-                        </div>
+                    <div class="bg-surface rounded-lg p-4 border border-borderc">
+                        <div class="text-sm text-textmuted">Uptime SLA</div>
+                        <div class="text-2xl font-semibold text-textmain mt-1">99.9%</div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </section>
+
+    </div>
+</section>
 
     <!-- Industry Solutions Section -->
-    <section id="industries" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase mb-2">Industry Verticals</h2>
-                <h3 class="text-4xl font-bold text-slate-900 mb-4">Tailored IoT Solutions by Sector</h3>
-                <p class="text-lg text-slate-600">From offshore platforms to mountain-top mines, we deliver specialized connectivity solutions designed for your operational challenges.</p>
-            </div>
+<section id="industries" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Maritime -->
-                <div class="industry-card group relative bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="showIndustryDetail('maritime')">
-                    <div class="absolute top-0 right-0 bg-blue-100 text-blue-700 px-3 py-1 rounded-bl-lg rounded-tr-lg text-xs font-semibold">Most Popular</div>
-                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 industry-icon transition-transform duration-300">
-                        <i data-lucide="ship" class="w-7 h-7 text-blue-600"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Maritime & Fisheries</h4>
-                    <p class="text-slate-600 mb-6">Navigating uncharted waters with confidence. Real-time vessel tracking, fuel monitoring, and crew welfare communications.</p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Vessel tracking & geofencing
-                        </li>
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Fuel theft prevention
-                        </li>
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            IMO 2024 compliance logging
-                        </li>
-                    </ul>
-                    <div class="flex items-center text-blue-600 font-semibold group-hover:translate-x-2 transition-transform">
-                        <span>Explore Solution</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                    </div>
-                </div>
-
-                <!-- Mining -->
-                <div class="industry-card group relative bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-purple-300 hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="showIndustryDetail('mining')">
-                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 industry-icon transition-transform duration-300">
-                        <i data-lucide="mountain" class="w-7 h-7 text-purple-600"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Mining & Resources</h4>
-                    <p class="text-slate-600 mb-6">Extracting data from the most remote sites. Heavy equipment telemetry, environmental monitoring, and worker safety systems.</p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Predictive maintenance alerts
-                        </li>
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Environmental compliance
-                        </li>
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Lone worker safety alerts
-                        </li>
-                    </ul>
-                    <div class="flex items-center text-purple-600 font-semibold group-hover:translate-x-2 transition-transform">
-                        <span>Explore Solution</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                    </div>
-                </div>
-
-                <!-- Agriculture -->
-                <div class="industry-card group relative bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-green-300 hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="showIndustryDetail('agriculture')">
-                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6 industry-icon transition-transform duration-300">
-                        <i data-lucide="leaf" class="w-7 h-7 text-green-600"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Agriculture & Plantation</h4>
-                    <p class="text-slate-600 mb-6">Cultivating intelligence across vast estates. Smart farming in remote areas with soil monitoring and automated irrigation.</p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Soil & weather monitoring
-                        </li>
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Drone data relay
-                        </li>
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Supply chain traceability
-                        </li>
-                    </ul>
-                    <div class="flex items-center text-green-600 font-semibold group-hover:translate-x-2 transition-transform">
-                        <span>Explore Solution</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                    </div>
-                </div>
-
-                <!-- Oil & Gas -->
-                <div class="industry-card group relative bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-orange-300 hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="showIndustryDetail('oilgas')">
-                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6 industry-icon transition-transform duration-300">
-                        <i data-lucide="flame" class="w-7 h-7 text-orange-600"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Oil, Gas & Energy</h4>
-                    <p class="text-slate-600 mb-6">Pipeline integrity from platform to plant. Offshore SCADA backhaul and leak detection systems for critical infrastructure.</p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Offshore platform connectivity
-                        </li>
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Pipeline leak detection
-                        </li>
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Emergency shutdown systems
-                        </li>
-                    </ul>
-                    <div class="flex items-center text-orange-600 font-semibold group-hover:translate-x-2 transition-transform">
-                        <span>Explore Solution</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                    </div>
-                </div>
-
-                <!-- Utilities -->
-                <div class="industry-card group relative bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-cyan-300 hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="showIndustryDetail('utilities')">
-                    <div class="w-14 h-14 bg-cyan-100 rounded-xl flex items-center justify-center mb-6 industry-icon transition-transform duration-300">
-                        <i data-lucide="zap" class="w-7 h-7 text-cyan-600"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Utilities & Infrastructure</h4>
-                    <p class="text-slate-600 mb-6">Powering the backbone of civilization. Smart grid monitoring and disaster resilience communications.</p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Smart grid monitoring
-                        </li>
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Flood early warning systems
-                        </li>
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Remote substation control
-                        </li>
-                    </ul>
-                    <div class="flex items-center text-cyan-600 font-semibold group-hover:translate-x-2 transition-transform">
-                        <span>Explore Solution</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                    </div>
-                </div>
-
-                <!-- Transportation -->
-                <div class="industry-card group relative bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-red-300 hover:shadow-xl transition-all duration-300 cursor-pointer" onclick="showIndustryDetail('transport')">
-                    <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-6 industry-icon transition-transform duration-300">
-                        <i data-lucide="truck" class="w-7 h-7 text-red-600"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold text-slate-900 mb-3">Transportation & Logistics</h4>
-                    <p class="text-slate-600 mb-6">End-to-end visibility across borders. Cross-border tracking and cold chain monitoring for sensitive cargo.</p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Cross-border fleet tracking
-                        </li>
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Cold chain monitoring
-                        </li>
-                        <li class="flex items-center text-sm text-slate-600">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
-                            Route optimization
-                        </li>
-                    </ul>
-                    <div class="flex items-center text-red-600 font-semibold group-hover:translate-x-2 transition-transform">
-                        <span>Explore Solution</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                    </div>
-                </div>
-            </div>
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-sm text-primary font-semibold tracking-wide uppercase mb-2">
+                Industry Verticals
+            </h2>
+            <h3 class="text-3xl font-semibold text-textmain mb-4">
+                Tailored IoT Solutions by Sector
+            </h3>
+            <p class="text-lg text-textmuted">
+                Purpose-built satellite IoT infrastructure designed for mission-critical operations across key industries.
+            </p>
         </div>
-    </section>
+
+        <!-- Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Card Template -->
+            <div class="group bg-card rounded-xl p-8 border border-borderc hover:shadow-md transition duration-300 cursor-pointer"
+                 onclick="showIndustryDetail('maritime')">
+
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-6">
+                    <i data-lucide="ship" class="w-6 h-6 text-primary"></i>
+                </div>
+
+                <h4 class="text-xl font-semibold text-textmain mb-3">
+                    Maritime & Fisheries
+                </h4>
+
+                <p class="text-textmuted mb-6 text-sm leading-relaxed">
+                    Real-time vessel monitoring, fuel optimization, and regulatory compliance systems for maritime operations.
+                </p>
+
+                <div class="flex items-center text-primary font-medium text-sm group-hover:translate-x-1 transition">
+                    Explore Solution
+                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                </div>
+            </div>
+
+
+            <!-- Mining -->
+            <div class="group bg-card rounded-xl p-8 border border-borderc hover:shadow-md transition duration-300 cursor-pointer"
+                 onclick="showIndustryDetail('mining')">
+
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-6">
+                    <i data-lucide="mountain" class="w-6 h-6 text-primary"></i>
+                </div>
+
+                <h4 class="text-xl font-semibold text-textmain mb-3">
+                    Mining & Resources
+                </h4>
+
+                <p class="text-textmuted mb-6 text-sm leading-relaxed">
+                    Heavy equipment telemetry, environmental compliance systems, and worker safety monitoring for remote sites.
+                </p>
+
+                <div class="flex items-center text-primary font-medium text-sm group-hover:translate-x-1 transition">
+                    Explore Solution
+                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                </div>
+            </div>
+
+
+            <!-- Agriculture -->
+            <div class="group bg-card rounded-xl p-8 border border-borderc hover:shadow-md transition duration-300 cursor-pointer"
+                 onclick="showIndustryDetail('agriculture')">
+
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-6">
+                    <i data-lucide="leaf" class="w-6 h-6 text-primary"></i>
+                </div>
+
+                <h4 class="text-xl font-semibold text-textmain mb-3">
+                    Agriculture & Plantation
+                </h4>
+
+                <p class="text-textmuted mb-6 text-sm leading-relaxed">
+                    Smart agriculture infrastructure including soil monitoring, irrigation automation, and supply chain traceability.
+                </p>
+
+                <div class="flex items-center text-primary font-medium text-sm group-hover:translate-x-1 transition">
+                    Explore Solution
+                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                </div>
+            </div>
+
+
+            <!-- Oil & Gas -->
+            <div class="group bg-card rounded-xl p-8 border border-borderc hover:shadow-md transition duration-300 cursor-pointer"
+                 onclick="showIndustryDetail('oilgas')">
+
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-6">
+                    <i data-lucide="flame" class="w-6 h-6 text-primary"></i>
+                </div>
+
+                <h4 class="text-xl font-semibold text-textmain mb-3">
+                    Oil, Gas & Energy
+                </h4>
+
+                <p class="text-textmuted mb-6 text-sm leading-relaxed">
+                    SCADA backhaul, pipeline monitoring, and critical infrastructure communication for energy operations.
+                </p>
+
+                <div class="flex items-center text-primary font-medium text-sm group-hover:translate-x-1 transition">
+                    Explore Solution
+                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                </div>
+            </div>
+
+
+            <!-- Utilities -->
+            <div class="group bg-card rounded-xl p-8 border border-borderc hover:shadow-md transition duration-300 cursor-pointer"
+                 onclick="showIndustryDetail('utilities')">
+
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-6">
+                    <i data-lucide="zap" class="w-6 h-6 text-primary"></i>
+                </div>
+
+                <h4 class="text-xl font-semibold text-textmain mb-3">
+                    Utilities & Infrastructure
+                </h4>
+
+                <p class="text-textmuted mb-6 text-sm leading-relaxed">
+                    Smart grid monitoring, disaster resilience systems, and remote substation connectivity.
+                </p>
+
+                <div class="flex items-center text-primary font-medium text-sm group-hover:translate-x-1 transition">
+                    Explore Solution
+                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                </div>
+            </div>
+
+
+            <!-- Transportation -->
+            <div class="group bg-card rounded-xl p-8 border border-borderc hover:shadow-md transition duration-300 cursor-pointer"
+                 onclick="showIndustryDetail('transport')">
+
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-6">
+                    <i data-lucide="truck" class="w-6 h-6 text-primary"></i>
+                </div>
+
+                <h4 class="text-xl font-semibold text-textmain mb-3">
+                    Transportation & Logistics
+                </h4>
+
+                <p class="text-textmuted mb-6 text-sm leading-relaxed">
+                    End-to-end fleet visibility, cross-border tracking, and cold chain monitoring solutions.
+                </p>
+
+                <div class="flex items-center text-primary font-medium text-sm group-hover:translate-x-1 transition">
+                    Explore Solution
+                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <!-- TSATSense Product Catalog Section -->
-    <section id="products" class="py-24 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase mb-2">TSATSense</h2>
-                <h3 class="text-4xl font-bold text-slate-900 mb-4">Integrated IoT Solutions</h3>
-                <p class="text-lg text-slate-600">"Transforming Data into Intelligent Decisions, Anywhere."</p>
-            </div>
+<section id="products" class="py-24 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- TrackSense -->
-                <div class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300">
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="map-pin" class="w-6 h-6 text-blue-600"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">TrackSense</h4>
-                    <p class="text-sm text-slate-500 mb-3 font-medium">Smart Tracking & Fleet Management</p>
-                    <p class="text-sm text-slate-600 leading-relaxed">Monitor every inch of your valuable assets—from logistics fleets to deep-sea vessels. Utilizing hybrid connectivity (Satellite & Cellular), TrackSense ensures zero blind spots, optimizes routes, and guarantees cargo security.</p>
-                </div>
-
-                <!-- EnergySense -->
-                <div class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-yellow-300 hover:shadow-xl transition-all duration-300">
-                    <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="zap" class="w-6 h-6 text-yellow-600"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">EnergySense</h4>
-                    <p class="text-sm text-slate-500 mb-3 font-medium">Smart Energy Management</p>
-                    <p class="text-sm text-slate-600 leading-relaxed">Digitize energy consumption to cut costs. Identify waste, predict load requirements, and optimize electrical devices in real-time for significant operational savings in industries and offices.</p>
-                </div>
-
-                <!-- HealthSense -->
-                <div class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-red-300 hover:shadow-xl transition-all duration-300">
-                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="heart-pulse" class="w-6 h-6 text-red-600"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">HealthSense</h4>
-                    <p class="text-sm text-slate-500 mb-3 font-medium">Remote Health & Safety</p>
-                    <p class="text-sm text-slate-600 leading-relaxed">Advanced remote health monitoring designed for high-risk sectors (Mining, Oil & Gas). Tracks vital signs and provides early warnings for medical anomalies or fatigue, ensuring high K3 standards.</p>
-                </div>
-
-                <!-- FuelSense -->
-                <div class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-orange-300 hover:shadow-xl transition-all duration-300">
-                    <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="droplet" class="w-6 h-6 text-orange-600"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">FuelSense</h4>
-                    <p class="text-sm text-slate-500 mb-3 font-medium">Precision Fuel Monitoring</p>
-                    <p class="text-sm text-slate-600 leading-relaxed">Eliminate cost leakage from inefficiency or theft. Provides accurate visualization of fuel volume, detects irregular refueling, and analyzes consumption vs. mileage data.</p>
-                </div>
-
-                <!-- EnviSense -->
-                <div class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-green-300 hover:shadow-xl transition-all duration-300">
-                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="leaf" class="w-6 h-6 text-green-600"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">EnviSense</h4>
-                    <p class="text-sm text-slate-500 mb-3 font-medium">Environmental Intelligence</p>
-                    <p class="text-sm text-slate-600 leading-relaxed">Comprehensive monitoring for Water Quality (WQMS), Air Quality (AQMS), Smart Agriculture, and Early Warning Systems (EWS) for natural disaster detection.</p>
-                </div>
-
-                <!-- EyeSense -->
-                <div class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-indigo-300 hover:shadow-xl transition-all duration-300">
-                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="eye" class="w-6 h-6 text-indigo-600"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">EyeSense</h4>
-                    <p class="text-sm text-slate-500 mb-3 font-medium">AI-Powered Visual Analytics</p>
-                    <p class="text-sm text-slate-600 leading-relaxed">Transforms CCTV into intelligent assistants. Uses Computer Vision to detect HSE violations (PPE compliance) and monitor driver behavior (fatigue/distraction) to prevent accidents.</p>
-                </div>
-
-                <!-- LoadSense -->
-                <div class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-cyan-300 hover:shadow-xl transition-all duration-300">
-                    <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="weight" class="w-6 h-6 text-cyan-600"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">LoadSense</h4>
-                    <p class="text-sm text-slate-500 mb-3 font-medium">Smart Payload Measurement</p>
-                    <p class="text-sm text-slate-600 leading-relaxed">Optimize logistics with Lidar and Loadcell technology. Automatically calculates volume and weight without stopping workflows, ensuring maximum safe capacity for every haul.</p>
-                </div>
-
-                <!-- TankSense -->
-                <div class="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all duration-300">
-                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <i data-lucide="database" class="w-6 h-6 text-slate-600"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">TankSense</h4>
-                    <p class="text-sm text-slate-500 mb-3 font-medium">Remote Tank Monitoring</p>
-                    <p class="text-sm text-slate-600 leading-relaxed">Manage water, oil, or chemical stocks without risky manual checks. Provides precise real-time volume data and auto-alerts for low stock to prevent run-outs.</p>
-                </div>
-            </div>
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-sm text-primary font-semibold tracking-wide uppercase mb-2">
+                TSATSense Platform
+            </h2>
+            <h3 class="text-3xl font-semibold text-textmain mb-4">
+                Integrated IoT Solutions
+            </h3>
+            <p class="text-lg text-textmuted">
+                Modular IoT capabilities designed for scalable and mission-critical enterprise deployment.
+            </p>
         </div>
-    </section>
 
-    <!-- Interactive Coverage Map Section -->
-    <section id="coverage" class="py-24 bg-slate-900 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-900 to-blue-950"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-base text-blue-400 font-semibold tracking-wide uppercase mb-2">Global Network</h2>
-                    <h3 class="text-4xl font-bold text-white mb-6">Satellite Coverage That Never Sleeps</h3>
-                    <p class="text-lg text-slate-300 mb-8">
-                        Our multi-orbit satellite constellation ensures seamless connectivity across Indonesia's archipelago, from the Malacca Strait to the Pacific islands.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="orbit" class="w-6 h-6 text-blue-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-1">LEO & GEO Constellation</h4>
-                                <p class="text-slate-400 text-sm">Hybrid network ensuring low latency for critical applications and broad coverage for remote monitoring.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="shield-check" class="w-6 h-6 text-green-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-1">Military-Grade Encryption</h4>
-                                <p class="text-slate-400 text-sm">AES-256 encryption with dedicated VPN tunnels for sensitive industrial data transmission.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="cloud" class="w-6 h-6 text-purple-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold mb-1">Cloud Integration</h4>
-                                <p class="text-slate-400 text-sm">Direct integration with AWS IoT Core, Azure IoT Hub, and private cloud deployments.</p>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Card Template -->
+            <div class="bg-card rounded-xl p-6 border border-borderc hover:shadow-md transition duration-300">
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="map-pin" class="w-6 h-6 text-primary"></i>
                 </div>
+                <h4 class="text-lg font-semibold text-textmain mb-1">TrackSense</h4>
+                <p class="text-sm text-textmuted mb-3">Smart Tracking & Fleet Management</p>
+                <p class="text-sm text-textmuted leading-relaxed">
+                    Hybrid satellite and cellular connectivity enabling real-time asset visibility, route optimization, and operational security.
+                </p>
+            </div>
 
-                <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700">
-                    <div class="aspect-video bg-slate-950 rounded-xl relative overflow-hidden mb-4">
-                        <!-- Simplified Map Visualization -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="relative w-full h-full bg-slate-900">
-                                <svg class="w-full h-full" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-                                    <!-- Grid lines -->
-                                    <defs>
-                                        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(59, 130, 246, 0.1)" stroke-width="1"/>
-                                        </pattern>
-                                    </defs>
-                                    <rect width="100%" height="100%" fill="url(#grid)" />
-                                    
-                                    <!-- Indonesia Archipelago Representation -->
-                                    <g fill="rgba(59, 130, 246, 0.3)" stroke="rgba(59, 130, 246, 0.6)" stroke-width="1">
-                                        <circle cx="80" cy="150" r="3" /> <!-- Sumatra -->
-                                        <circle cx="120" cy="140" r="4" /> <!-- Java -->
-                                        <circle cx="180" cy="130" r="5" /> <!-- Kalimantan -->
-                                        <circle cx="250" cy="120" r="4" /> <!-- Sulawesi -->
-                                        <circle cx="320" cy="100" r="3" /> <!-- Papua -->
-                                        <path d="M80,150 Q100,145 120,140 T180,130 T250,120 T320,100" fill="none" stroke="rgba(59, 130, 246, 0.3)" stroke-width="2" stroke-dasharray="5,5"/>
-                                    </g>
-                                    
-                                    <!-- Coverage Beams -->
-                                    <circle cx="200" cy="150" r="100" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="1">
-                                        <animate attributeName="r" values="80;120;80" dur="4s" repeatCount="indefinite" />
-                                        <animate attributeName="opacity" values="0.2;0.4;0.2" dur="4s" repeatCount="indefinite" />
-                                    </circle>
-                                    
-                                    <!-- Satellites -->
-                                    <g>
-                                        <circle cx="100" cy="50" r="4" fill="white" />
-                                        <circle cx="100" cy="50" r="8" fill="none" stroke="white" stroke-width="1" opacity="0.5">
-                                            <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite" />
-                                            <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite" />
-                                        </circle>
-                                        <line x1="100" y1="50" x2="80" y2="150" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
-                                    </g>
-                                    <g>
-                                        <circle cx="300" cy="60" r="4" fill="white" />
-                                        <circle cx="300" cy="60" r="8" fill="none" stroke="white" stroke-width="1" opacity="0.5">
-                                            <animate attributeName="r" values="8;12;8" dur="2s" begin="1s" repeatCount="indefinite" />
-                                            <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" begin="1s" repeatCount="indefinite" />
-                                        </circle>
-                                        <line x1="300" y1="60" x2="320" y2="100" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
-                                    </g>
-                                </svg>
-                                
-                                <div class="absolute bottom-4 left-4 bg-slate-900/80 backdrop-blur-sm rounded-lg p-3 border border-slate-700">
-                                    <div class="flex items-center space-x-2 text-xs text-slate-300">
-                                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                                        <span>6 Active Beams</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2 text-xs text-slate-300 mt-1">
-                                        <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
-                                        <span>99.8% Availability</span>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="bg-card rounded-xl p-6 border border-borderc hover:shadow-md transition duration-300">
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="zap" class="w-6 h-6 text-primary"></i>
+                </div>
+                <h4 class="text-lg font-semibold text-textmain mb-1">EnergySense</h4>
+                <p class="text-sm text-textmuted mb-3">Smart Energy Management</p>
+                <p class="text-sm text-textmuted leading-relaxed">
+                    Real-time monitoring and analytics for energy consumption optimization across industrial and commercial facilities.
+                </p>
+            </div>
+
+            <div class="bg-card rounded-xl p-6 border border-borderc hover:shadow-md transition duration-300">
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="heart-pulse" class="w-6 h-6 text-primary"></i>
+                </div>
+                <h4 class="text-lg font-semibold text-textmain mb-1">HealthSense</h4>
+                <p class="text-sm text-textmuted mb-3">Remote Health & Safety</p>
+                <p class="text-sm text-textmuted leading-relaxed">
+                    Workforce safety monitoring systems for high-risk industries with real-time anomaly detection and alerting.
+                </p>
+            </div>
+
+            <div class="bg-card rounded-xl p-6 border border-borderc hover:shadow-md transition duration-300">
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="droplet" class="w-6 h-6 text-primary"></i>
+                </div>
+                <h4 class="text-lg font-semibold text-textmain mb-1">FuelSense</h4>
+                <p class="text-sm text-textmuted mb-3">Precision Fuel Monitoring</p>
+                <p class="text-sm text-textmuted leading-relaxed">
+                    Accurate fuel level tracking and anomaly detection to reduce leakage, theft, and inefficiencies.
+                </p>
+            </div>
+
+            <div class="bg-card rounded-xl p-6 border border-borderc hover:shadow-md transition duration-300">
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="leaf" class="w-6 h-6 text-primary"></i>
+                </div>
+                <h4 class="text-lg font-semibold text-textmain mb-1">EnviSense</h4>
+                <p class="text-sm text-textmuted mb-3">Environmental Intelligence</p>
+                <p class="text-sm text-textmuted leading-relaxed">
+                    Comprehensive environmental monitoring including air, water, and agricultural analytics.
+                </p>
+            </div>
+
+            <div class="bg-card rounded-xl p-6 border border-borderc hover:shadow-md transition duration-300">
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="eye" class="w-6 h-6 text-primary"></i>
+                </div>
+                <h4 class="text-lg font-semibold text-textmain mb-1">EyeSense</h4>
+                <p class="text-sm text-textmuted mb-3">AI Visual Analytics</p>
+                <p class="text-sm text-textmuted leading-relaxed">
+                    AI-powered computer vision for safety compliance, behavior detection, and intelligent surveillance.
+                </p>
+            </div>
+
+            <div class="bg-card rounded-xl p-6 border border-borderc hover:shadow-md transition duration-300">
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="weight" class="w-6 h-6 text-primary"></i>
+                </div>
+                <h4 class="text-lg font-semibold text-textmain mb-1">LoadSense</h4>
+                <p class="text-sm text-textmuted mb-3">Smart Payload Measurement</p>
+                <p class="text-sm text-textmuted leading-relaxed">
+                    Automated load volume and weight calculation to optimize transport efficiency and compliance.
+                </p>
+            </div>
+
+            <div class="bg-card rounded-xl p-6 border border-borderc hover:shadow-md transition duration-300">
+                <div class="w-12 h-12 bg-surface rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="database" class="w-6 h-6 text-primary"></i>
+                </div>
+                <h4 class="text-lg font-semibold text-textmain mb-1">TankSense</h4>
+                <p class="text-sm text-textmuted mb-3">Remote Tank Monitoring</p>
+                <p class="text-sm text-textmuted leading-relaxed">
+                    Real-time tank level monitoring with automated alerts to prevent stock-outs and operational risks.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- Coverage Section -->
+<section id="coverage" class="py-24 bg-white border-t border-borderc">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+            <!-- Left Content -->
+            <div>
+                <h2 class="text-sm text-primary font-semibold tracking-wide uppercase mb-2">
+                    Network Infrastructure
+                </h2>
+
+                <h3 class="text-3xl font-semibold text-textmain mb-6">
+                    Nationwide Satellite Coverage
+                </h3>
+
+                <p class="text-lg text-textmuted mb-8">
+                    Multi-orbit satellite architecture ensuring secure, resilient, and low-latency connectivity across Indonesia’s archipelago.
+                </p>
+
+                <div class="space-y-6">
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-surface rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="orbit" class="w-5 h-5 text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-textmain font-medium mb-1">
+                                LEO & GEO Constellation
+                            </h4>
+                            <p class="text-sm text-textmuted">
+                                Hybrid satellite infrastructure for optimized latency and broad geographic coverage.
+                            </p>
                         </div>
                     </div>
-                    
-                    <div class="grid grid-cols-3 gap-4 text-center">
-                        <div class="bg-slate-900 rounded-lg p-3 border border-slate-700">
-                            <div class="text-2xl font-bold text-white">< 50ms</div>
-                            <div class="text-xs text-slate-400">Latency</div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-surface rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-primary"></i>
                         </div>
-                        <div class="bg-slate-900 rounded-lg p-3 border border-slate-700">
-                            <div class="text-2xl font-bold text-white">99.9%</div>
-                            <div class="text-xs text-slate-400">Uptime SLA</div>
-                        </div>
-                        <div class="bg-slate-900 rounded-lg p-3 border border-slate-700">
-                            <div class="text-2xl font-bold text-white">24/7</div>
-                            <div class="text-xs text-slate-400">NOC Support</div>
+                        <div>
+                            <h4 class="text-textmain font-medium mb-1">
+                                Enterprise-Grade Security
+                            </h4>
+                            <p class="text-sm text-textmuted">
+                                AES-256 encryption with dedicated VPN architecture for mission-critical data protection.
+                            </p>
                         </div>
                     </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-surface rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="cloud" class="w-5 h-5 text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-textmain font-medium mb-1">
+                                Cloud & Private Integration
+                            </h4>
+                            <p class="text-sm text-textmuted">
+                                Seamless integration with AWS, Azure, and private enterprise cloud deployments.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
+            <!-- Right Metrics Card -->
+            <div class="bg-card border border-borderc rounded-xl p-8 shadow-sm">
+
+                <h4 class="text-lg font-semibold text-textmain mb-6">
+                    Network Performance Overview
+                </h4>
+
+                <div class="grid grid-cols-2 gap-6 mb-8">
+                    <div class="bg-surface rounded-lg p-4 border border-borderc text-center">
+                        <div class="text-2xl font-semibold text-textmain">&lt; 50ms</div>
+                        <div class="text-xs text-textmuted mt-1">Latency</div>
+                    </div>
+                    <div class="bg-surface rounded-lg p-4 border border-borderc text-center">
+                        <div class="text-2xl font-semibold text-textmain">99.9%</div>
+                        <div class="text-xs text-textmuted mt-1">Uptime SLA</div>
+                    </div>
+                    <div class="bg-surface rounded-lg p-4 border border-borderc text-center">
+                        <div class="text-2xl font-semibold text-textmain">17K+</div>
+                        <div class="text-xs text-textmuted mt-1">Islands Covered</div>
+                    </div>
+                    <div class="bg-surface rounded-lg p-4 border border-borderc text-center">
+                        <div class="text-2xl font-semibold text-textmain">24/7</div>
+                        <div class="text-xs text-textmuted mt-1">NOC Support</div>
+                    </div>
+                </div>
+
+                <div class="text-sm text-textmuted border-t border-borderc pt-4">
+                    Performance metrics based on enterprise deployment SLA agreements.
+                </div>
+
+            </div>
+
         </div>
-    </section>
+
+    </div>
+</section>
 
     <!-- Case Studies Section -->
-    <section id="case-studies" class="py-24 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase mb-2">Success Stories</h2>
-                <h3 class="text-4xl font-bold text-slate-900 mb-4">Proven Results Across Industries</h3>
-            </div>
+<section id="case-studies" class="py-24 bg-white border-t border-borderc">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Case Study 1 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 hover:shadow-xl transition-shadow">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <img src="http://static.photos/maritime/640x360/42" alt="Maritime Operations" class="w-full h-full object-cover">
-                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Maritime</div>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold text-slate-900 mb-2">PT Samudera Shipping</h4>
-                        <p class="text-slate-600 text-sm mb-4">Implemented fleet-wide IoT monitoring across 47 vessels, reducing fuel consumption by 15% through real-time engine analytics.</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
-                            <div>
-                                <div class="text-2xl font-bold text-blue-600">15%</div>
-                                <div class="text-xs text-slate-500">Fuel Savings</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-2xl font-bold text-blue-600">47</div>
-                                <div class="text-xs text-slate-500">Vessels Connected</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Case Study 2 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 hover:shadow-xl transition-shadow">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <img src="http://static.photos/industry/640x360/88" alt="Mining Operations" class="w-full h-full object-cover">
-                        <div class="absolute top-4 left-4 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Mining</div>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold text-slate-900 mb-2">Freeport Indonesia</h4>
-                        <p class="text-slate-600 text-sm mb-4">Remote mine site connectivity in Papua enabling real-time equipment monitoring and emergency response systems.</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
-                            <div>
-                                <div class="text-2xl font-bold text-purple-600">99.9%</div>
-                                <div class="text-xs text-slate-500">Uptime Achieved</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-2xl font-bold text-purple-600">120+</div>
-                                <div class="text-xs text-slate-500">Sensors Deployed</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Case Study 3 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 hover:shadow-xl transition-shadow">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <img src="http://static.photos/agriculture/640x360/15" alt="Agriculture" class="w-full h-full object-cover">
-                        <div class="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Agriculture</div>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold text-slate-900 mb-2">Wilmar International</h4>
-                        <p class="text-slate-600 text-sm mb-4">Smart plantation monitoring across 50,000 hectares in Kalimantan with automated irrigation and weather station networks.</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
-                            <div>
-                                <div class="text-2xl font-bold text-green-600">30%</div>
-                                <div class="text-xs text-slate-500">Water Savings</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-2xl font-bold text-green-600">50k</div>
-                                <div class="text-xs text-slate-500">Hectares Covered</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-sm text-primary font-semibold tracking-wide uppercase mb-2">
+                Case Studies
+            </h2>
+            <h3 class="text-3xl font-semibold text-textmain mb-4">
+                Proven Enterprise Deployments
+            </h3>
+            <p class="text-lg text-textmuted">
+                Real-world implementation across mission-critical industries.
+            </p>
         </div>
-    </section>
 
-    <!-- Solution Configurator CTA -->
-    <section class="py-24 bg-blue-600 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600"></div>
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
-        </div>
-        
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 class="text-4xl font-bold text-white mb-6">Ready to Connect Your Remote Operations?</h2>
-            <p class="text-xl text-blue-100 mb-8">Get a customized connectivity assessment and ROI analysis for your specific industry requirements.</p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="openContactModal()" class="bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition shadow-xl">
-                    Request Consultation
-                </button>
-                <button class="bg-blue-700 text-white border-2 border-blue-400 px-8 py-4 rounded-full font-bold hover:bg-blue-800 transition">
-                    Download Capability Statement
-                </button>
+        <!-- Grid -->
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- Case 1 -->
+            <div class="bg-card rounded-xl border border-borderc p-6 hover:shadow-md transition duration-300">
+
+                <div class="text-xs text-primary font-medium uppercase mb-2">
+                    Maritime
+                </div>
+
+                <h4 class="text-lg font-semibold text-textmain mb-3">
+                    PT Samudera Shipping
+                </h4>
+
+                <p class="text-sm text-textmuted mb-6 leading-relaxed">
+                    Fleet-wide satellite IoT deployment across 47 vessels enabling real-time engine monitoring and fuel optimization.
+                </p>
+
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-borderc text-center">
+                    <div>
+                        <div class="text-xl font-semibold text-textmain">15%</div>
+                        <div class="text-xs text-textmuted mt-1">Fuel Savings</div>
+                    </div>
+                    <div>
+                        <div class="text-xl font-semibold text-textmain">47</div>
+                        <div class="text-xs text-textmuted mt-1">Vessels Connected</div>
+                    </div>
+                </div>
+
             </div>
-            
-            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <div class="text-3xl font-bold text-white">500+</div>
-                    <div class="text-sm text-blue-200">Enterprise Clients</div>
+
+
+            <!-- Case 2 -->
+            <div class="bg-card rounded-xl border border-borderc p-6 hover:shadow-md transition duration-300">
+
+                <div class="text-xs text-primary font-medium uppercase mb-2">
+                    Mining
                 </div>
-                <div>
-                    <div class="text-3xl font-bold text-white">50k+</div>
-                    <div class="text-sm text-blue-200">IoT Endpoints</div>
+
+                <h4 class="text-lg font-semibold text-textmain mb-3">
+                    Freeport Indonesia
+                </h4>
+
+                <p class="text-sm text-textmuted mb-6 leading-relaxed">
+                    Remote site connectivity enabling real-time heavy equipment monitoring and emergency response systems in Papua.
+                </p>
+
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-borderc text-center">
+                    <div>
+                        <div class="text-xl font-semibold text-textmain">99.9%</div>
+                        <div class="text-xs text-textmuted mt-1">Uptime Achieved</div>
+                    </div>
+                    <div>
+                        <div class="text-xl font-semibold text-textmain">120+</div>
+                        <div class="text-xs text-textmuted mt-1">Sensors Deployed</div>
+                    </div>
                 </div>
-                <div>
-                    <div class="text-3xl font-bold text-white">15+</div>
-                    <div class="text-sm text-blue-200">Years Experience</div>
-                </div>
-                <div>
-                    <div class="text-3xl font-bold text-white">ISO</div>
-                    <div class="text-sm text-blue-200">27001 Certified</div>
-                </div>
+
             </div>
+
+
+            <!-- Case 3 -->
+            <div class="bg-card rounded-xl border border-borderc p-6 hover:shadow-md transition duration-300">
+
+                <div class="text-xs text-primary font-medium uppercase mb-2">
+                    Agriculture
+                </div>
+
+                <h4 class="text-lg font-semibold text-textmain mb-3">
+                    Wilmar International
+                </h4>
+
+                <p class="text-sm text-textmuted mb-6 leading-relaxed">
+                    Smart plantation monitoring across 50,000 hectares with automated irrigation and environmental analytics.
+                </p>
+
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-borderc text-center">
+                    <div>
+                        <div class="text-xl font-semibold text-textmain">30%</div>
+                        <div class="text-xs text-textmuted mt-1">Water Savings</div>
+                    </div>
+                    <div>
+                        <div class="text-xl font-semibold text-textmain">50k</div>
+                        <div class="text-xs text-textmuted mt-1">Hectares Covered</div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
+
+    <!-- Enterprise CTA Section -->
+<section class="py-24 bg-surface border-t border-borderc">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+        <h2 class="text-3xl font-semibold text-textmain mb-6">
+            Ready to Modernize Your Remote Operations?
+        </h2>
+
+        <p class="text-lg text-textmuted mb-10 max-w-2xl mx-auto">
+            Engage with our solution architects to assess your operational requirements 
+            and design a secure, scalable satellite IoT deployment tailored to your industry.
+        </p>
+
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <button onclick="openContactModal()" 
+                class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-red-700 transition shadow-sm">
+                Request Consultation
+            </button>
+
+            <button 
+                class="bg-white border border-borderc text-textmain px-8 py-3 rounded-lg font-medium hover:bg-gray-50 transition">
+                Download Capability Statement
+            </button>
+        </div>
+
+        <!-- Metrics -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+
+            <div>
+                <div class="text-2xl font-semibold text-textmain">500+</div>
+                <div class="text-sm text-textmuted mt-1">Enterprise Clients</div>
+            </div>
+
+            <div>
+                <div class="text-2xl font-semibold text-textmain">50k+</div>
+                <div class="text-sm text-textmuted mt-1">IoT Endpoints</div>
+            </div>
+
+            <div>
+                <div class="text-2xl font-semibold text-textmain">15+</div>
+                <div class="text-sm text-textmuted mt-1">Years Experience</div>
+            </div>
+
+            <div>
+                <div class="text-2xl font-semibold text-textmain">ISO 27001</div>
+                <div class="text-sm text-textmuted mt-1">Certified Security Standard</div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i data-lucide="satellite" class="text-blue-500 w-6 h-6"></i>
-                        <span class="text-xl font-bold text-white">Telkomsat</span>
-                    </div>
-                    <p class="text-sm text-slate-400">Indonesia's leading satellite IoT provider, connecting the unconnected across the archipelago.</p>
+<footer class="bg-white border-t border-borderc py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="grid md:grid-cols-4 gap-10 mb-12">
+
+            <!-- Company Info -->
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <i data-lucide="satellite" class="text-primary w-6 h-6"></i>
+                    <span class="text-lg font-semibold text-textmain">Telkomsat</span>
                 </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Solutions</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white transition">Maritime IoT</a></li>
-                        <li><a href="#" class="hover:text-white transition">Mining Connectivity</a></li>
-                        <li><a href="#" class="hover:text-white transition">Smart Agriculture</a></li>
-                        <li><a href="#" class="hover:text-white transition">Energy & Utilities</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Resources</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white transition">Technical Documentation</a></li>
-                        <li><a href="#" class="hover:text-white transition">API Reference</a></li>
-                        <li><a href="#" class="hover:text-white transition">Coverage Maps</a></li>
-                        <li><a href="#" class="hover:text-white transition">SLA Information</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Contact</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li class="flex items-center space-x-2">
-                            <i data-lucide="map-pin" class="w-4 h-4"></i>
-                            <span>Jakarta, Indonesia</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i data-lucide="mail" class="w-4 h-4"></i>
-                            <span>iot@telkomsat.co.id</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i data-lucide="phone" class="w-4 h-4"></i>
-                            <span>+62 21 1234 5678</span>
-                        </li>
-                    </ul>
-                </div>
+
+                <p class="text-sm text-textmuted leading-relaxed">
+                    Enterprise satellite IoT infrastructure provider delivering secure and resilient connectivity across Indonesia.
+                </p>
             </div>
-            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-sm text-slate-500">&copy; 2024 Telkomsat. All rights reserved.</p>
-                <div class="flex space-x-4 mt-4 md:mt-0">
-                    <a href="#" class="text-slate-400 hover:text-white transition"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
-                    <a href="#" class="text-slate-400 hover:text-white transition"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-                    <a href="#" class="text-slate-400 hover:text-white transition"><i data-lucide="youtube" class="w-5 h-5"></i></a>
-                </div>
+
+            <!-- Solutions -->
+            <div>
+                <h4 class="text-sm font-semibold text-textmain mb-4 uppercase tracking-wide">
+                    Solutions
+                </h4>
+                <ul class="space-y-2 text-sm text-textmuted">
+                    <li><a href="#" class="hover:text-primary transition">Maritime IoT</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Mining Connectivity</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Smart Agriculture</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Energy & Utilities</a></li>
+                </ul>
             </div>
+
+            <!-- Resources -->
+            <div>
+                <h4 class="text-sm font-semibold text-textmain mb-4 uppercase tracking-wide">
+                    Resources
+                </h4>
+                <ul class="space-y-2 text-sm text-textmuted">
+                    <li><a href="#" class="hover:text-primary transition">Technical Documentation</a></li>
+                    <li><a href="#" class="hover:text-primary transition">API Reference</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Coverage Maps</a></li>
+                    <li><a href="#" class="hover:text-primary transition">SLA Information</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="text-sm font-semibold text-textmain mb-4 uppercase tracking-wide">
+                    Contact
+                </h4>
+                <ul class="space-y-3 text-sm text-textmuted">
+                    <li class="flex items-center space-x-2">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-primary"></i>
+                        <span>Bogor, Indonesia</span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                        <i data-lucide="mail" class="w-4 h-4 text-primary"></i>
+                        <span>iot@telkomsat.co.id</span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                        <i data-lucide="phone" class="w-4 h-4 text-primary"></i>
+                        <span>+62 21 1234 5678</span>
+                    </li>
+                </ul>
+            </div>
+
         </div>
-    </footer>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-borderc pt-8 flex flex-col md:flex-row justify-between items-center">
+
+            <p class="text-sm text-textmuted">
+                © 2026 Telkomsat. All rights reserved.
+            </p>
+
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="text-textmuted hover:text-primary transition">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+                <a href="#" class="text-textmuted hover:text-primary transition">
+                    <i data-lucide="twitter" class="w-5 h-5"></i>
+                </a>
+                <a href="#" class="text-textmuted hover:text-primary transition">
+                    <i data-lucide="youtube" class="w-5 h-5"></i>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</footer>
 
     <!-- Contact Modal -->
     <div id="contact-modal" class="fixed inset-0 z-50 hidden">
